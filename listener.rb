@@ -1,42 +1,40 @@
-module ListenerParams
-  EMAIL='email'
-  FNAME='first_name'
-  LONG='longitude'
-  LAT='latitude'
-  IP='socket_ip'
-  PORT='socket_port'
+require_relative 'person'
+require_relative 'location'
+
+module ListenerService
+  BASE_ROUTE='/listeners'
 end
 
-get '/listeners/*' do |listener_id|
+get ListenerService::BASE_ROUTE+'/*' do |listener_id|
   RestClient.get settings.play4u_services_base_url+request.path_info+'/'+listener_id
 end
 
-post '/listeners' do
+post ListenerService::BASE_ROUTE do
   params={
-    email: request[ListenerParams::EMAIL],
-    first_name: request[ListenerParams::FNAME],
-    socket_ip: request[ListenerParams::IP],
-    socket_port: request[ListenerParams::PORT],
-    longitude: request[ListenerParams::LONG],
-    latitude: request[ListenerParams::LAT]  
+    email: request[Person::Params::EMAIL],
+    first_name: request[Listener::Params::FNAME],
+    socket_ip: request[Location::Params::IP],
+    socket_port: request[Location::Params::PORT],
+    longitude: request[Location::Params::LONG],
+    latitude: request[Location::Params::LAT]  
   }
   
   RestClient.post settings.play4u_services_base_url+request.path_info, params
 end
 
-put '/listeners/*' do |listener_id|
+put ListenerService::BASE_ROUTE+'/*' do |listener_id|
   params={
     email: request[ListenerParams::EMAIL],
-    first_name: request[ListenerParams::FNAME],
-    socket_ip: request[ListenerParams::IP],
-    socket_port: request[ListenerParams::PORT],
-    longitude: request[ListenerParams::LONG],
-    latitude: request[ListenerParams::LAT]   
+    first_name: request[Listener::Params::FNAME],
+    socket_ip: request[Location::Params::IP],
+    socket_port: request[Location::Params::PORT],
+    longitude: request[Location::Params::LONG],
+    latitude: request[Location::Params::LAT]   
   }
   
   RestClient.put settings.play4u_services_base_url+request.path_info+'/'+listener_id, params
 end
 
-delete '/listeners/*' do |listener_id|
+delete ListenerService::BASE_ROUTE+'/*' do |listener_id|
   RestClient.put settings.play4u_services_base_url+request.path_info+'/'+listener_id
 end
