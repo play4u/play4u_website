@@ -13,8 +13,6 @@ post MusicJockeyService::BASE_ROUTE do
   params={
     email: request[Person::Params::EMAIL],
     stage_name: request[MusicJockey::Params::STAGE_NAME],
-    socket_ip: request[Location::Params::IP],
-    socket_port: request[Location::Params::PORT],
     longitude: request[Location::Params::LONG],
     latitude: request[Location::Params::LAT]  
   }

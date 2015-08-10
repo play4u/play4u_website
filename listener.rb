@@ -13,8 +13,6 @@ post ListenerService::BASE_ROUTE do
   params={
     email: request[Person::Params::EMAIL],
     first_name: request[Listener::Params::FNAME],
-    socket_ip: request[Location::Params::IP],
-    socket_port: request[Location::Params::PORT],
     longitude: request[Location::Params::LONG],
     latitude: request[Location::Params::LAT]  
   }
