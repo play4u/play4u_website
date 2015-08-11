@@ -22,7 +22,7 @@ class TimedRestClient
   protected
   def self.create_resource(uri,settings)
     RestClient::Resource.new uri, 
-                                    :read_timeout => settings.service_timeout.to_i, 
+                                    :timeout => settings.service_timeout.to_i, 
                                     :open_timeout => settings.service_timeout.to_i
   end
 end

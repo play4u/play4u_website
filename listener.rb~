@@ -34,5 +34,5 @@ put ListenerService::BASE_ROUTE+'/*' do |listener_id|
 end
 
 delete ListenerService::BASE_ROUTE+'/*' do |listener_id|
-  TimedRestClient.delete(settings.play4u_services_base_url+request.path_info+'/'+listener_id,{},settings)
+  TimedRestClient.delete settings.play4u_services_base_url+request.path_info+'/'+listener_id,{},settings
 end

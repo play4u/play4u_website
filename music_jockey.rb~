@@ -6,7 +6,7 @@ module MusicJockeyService
 end
 
 get MusicJockeyService::BASE_ROUTE+'/*' do |mj_id|
-  RestClient.get(settings.play4u_services_base_url+request.path_info+'/'+mj_id,{},settings)
+  RestClient.get settings.play4u_services_base_url+request.path_info+'/'+mj_id,{},settings
 end
 
 post MusicJockeyService::BASE_ROUTE do
@@ -30,9 +30,9 @@ put MusicJockeyService::BASE_ROUTE+'/*' do |mj_id|
     latitude: request[Location::Params::LAT]   
   }
   
-  TimedRestClient.put(settings.play4u_services_base_url+request.path_info+'/'+mj_id, params,settings)
+  TimedRestClient.put settings.play4u_services_base_url+request.path_info+'/'+mj_id, params,settings
 end
 
 delete MusicJockeyService::BASE_ROUTE+'/*' do |mj_id|
-  TimedRestClient.delete(settings.play4u_services_base_url+request.path_info+'/'+mj_id,{},settings)
+  TimedRestClient.delete settings.play4u_services_base_url+request.path_info+'/'+mj_id,{},settings
 end
