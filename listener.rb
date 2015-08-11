@@ -17,7 +17,7 @@ post ListenerService::BASE_ROUTE do
     latitude: request[Location::Params::LAT]  
   }
   
-  RestClient.post settings.play4u_services_base_url+request.path_info, params
+  TimedRestClient.post settings.play4u_services_base_url+request.path_info, params
 end
 
 put ListenerService::BASE_ROUTE+'/*' do |listener_id|
@@ -30,9 +30,9 @@ put ListenerService::BASE_ROUTE+'/*' do |listener_id|
     latitude: request[Location::Params::LAT]   
   }
   
-  RestClient.put settings.play4u_services_base_url+request.path_info+'/'+listener_id, params
+  TimedRestClient.put settings.play4u_services_base_url+request.path_info+'/'+listener_id, params
 end
 
 delete ListenerService::BASE_ROUTE+'/*' do |listener_id|
-  RestClient.put settings.play4u_services_base_url+request.path_info+'/'+listener_id
+  TimedRestClient.put settings.play4u_services_base_url+request.path_info+'/'+listener_id
 end
