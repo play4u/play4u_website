@@ -7,7 +7,8 @@ end
 
 module MusicJockey
   module Params
-    ID='id'
+    Id='id'
+    STAGE_NAME='stage_name'
   end
 end
 
