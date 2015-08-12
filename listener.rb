@@ -5,34 +5,24 @@ module ListenerService
   BASE_ROUTE='/listeners'
 end
 
-get ListenerService::BASE_ROUTE+'/*' do |listener_id|
-  RestClient.get settings.play4u_services_base_url+request.path_info+'/'+listener_id,{},settings
+module Listener
+  module Params
+    Id='id'
+  end
+end
+
+get ListenerService::BASE_ROUTE+"/:#{Listener::Params::Id}" do
+  RestClient.get settings.play4u_services_base_url+request.path,{},settings
 end
 
 post ListenerService::BASE_ROUTE do
-  params={
-    email: request[Person::Params::EMAIL],
-    first_name: request[Listener::Params::FNAME],
-    longitude: request[Location::Params::LONG],
-    latitude: request[Location::Params::LAT]  
-  }
-  
-  TimedRestClient.post(settings.play4u_services_base_url+request.path_info, params,settings)
+  TimedRestClient.post(settings.play4u_services_base_url+request.path, params,settings)
 end
 
-put ListenerService::BASE_ROUTE+'/*' do |listener_id|
-  params={
-    email: request[ListenerParams::EMAIL],
-    first_name: request[Listener::Params::FNAME],
-    socket_ip: request[Location::Params::IP],
-    socket_port: request[Location::Params::PORT],
-    longitude: request[Location::Params::LONG],
-    latitude: request[Location::Params::LAT]   
-  }
-  
-  TimedRestClient.put(settings.play4u_services_base_url+request.path_info+'/'+listener_id, params, settings)
+put ListenerService::BASE_ROUTE+"/:#{Listener::Params::Id}" do
+  TimedRestClient.put(settings.play4u_services_base_url+request.path, params, settings)
 end
 
-delete ListenerService::BASE_ROUTE+'/*' do |listener_id|
-  TimedRestClient.delete(settings.play4u_services_base_url+request.path_info+'/'+listener_id,{},settings)
+delete ListenerService::BASE_ROUTE+"/:#{Listener::Params::Id}" do
+  TimedRestClient.delete(settings.play4u_services_base_url+request.path,{},settings)
 end
