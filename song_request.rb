@@ -7,5 +7,5 @@ module SongRequestService
 end
 
 post SongRequestService::BASE_ROUTE do
-  TimedRestClient.put(settings.play4u_services_base_url+request.path, params, settings)
+  TimedRestClient.post(settings.play4u_services_base_url+request.path, params, settings)
 end

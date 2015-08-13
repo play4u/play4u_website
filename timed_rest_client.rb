@@ -2,19 +2,19 @@ require 'rest_client'
 
 class TimedRestClient
   def self.get(uri, params,settings)
-    return create_resource(uri,settings).get params
+    create_resource(uri,settings).get params
   end
   
   def self.post(uri, params,settings)
-    return create_resource(uri,settings).post params
+    create_resource(uri,settings).post params
   end
   
   def self.put(uri, params,settings)
-    return create_resource(uri,settings).put params
+    create_resource(uri,settings).put params
   end
   
   def self.delete(uri, params,settings)
-    return create_resource(uri,settings).delete params
+    create_resource(uri,settings).delete params
   end
   
   #
